@@ -1,0 +1,38 @@
+.nav-bar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid grey;
+
+  .left{
+    flex:1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 50px;
+  }
+  .center{
+    flex:2;
+    font-size: 50px;
+    font-weight: 900;
+  }
+  .right{
+    flex:1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 50px;
+    gap: 20px;
+    
+    .games{
+      outline: solid 1px grey;
+      padding: 10px;
+      border-radius: 50px;
+      font-weight: 700;
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+  }
+}

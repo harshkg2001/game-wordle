@@ -1,0 +1,18 @@
+.on-src-keyboard{
+
+  .on-src-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    .on-src-col{
+      outline: solid 1px grey;
+      padding: 15px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+  }
+}
