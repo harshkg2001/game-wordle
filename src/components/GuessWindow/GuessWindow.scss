@@ -1,5 +1,4 @@
 .guess-window {
-  padding-top: 30px;
   padding-bottom: 30px;
   
   .guess-row{
@@ -11,10 +10,17 @@
     padding-bottom: 5px;
 
     .guess-col{
-      outline: solid 3px grey;
+      outline: solid 2px grey;
       padding: 8px;
       width: 30px;
       height: 30px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 25px;
+      font-weight: 600;
     }
   }
 }

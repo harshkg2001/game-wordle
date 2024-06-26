@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import useWordle from '../../hooks/useWordle'
 
-function Wordle(word)
+function Wordle({word})
 {
   const { handleKeyup, handleGuess, guesses, currentGuess, turn, isCorrect } = useWordle(word);
 

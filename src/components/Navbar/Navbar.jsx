@@ -1,5 +1,6 @@
 import React from 'react'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import PersonAddAltRoundedIcon from '@mui/icons-material/PersonAddAltRounded';
+import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import SettingsIcon from '@mui/icons-material/Settings';
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
@@ -10,15 +11,16 @@ function Navbar()
   return (
     <div className='nav-bar'>
       <div className="left">
-        <DensityMediumIcon/>
+        <DensityMediumIcon className='icon'/>
       </div>
       <div className="center">
         Wordle
       </div>
       <div className="right">
-        <HelpOutlineIcon/>
-        <LeaderboardIcon/>
-        <SettingsIcon/>
+        <PersonAddAltRoundedIcon className='icon'/>
+        <HelpRoundedIcon className='icon'/>
+        <LeaderboardIcon className='icon'/>
+        <SettingsIcon className='icon'/>
         <div className="games">
           Subscribe to Games
         </div>
