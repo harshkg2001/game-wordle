@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import './GuessWindow.scss'
 import useWordle from '../../hooks/useWordle';
+import color from './../../color.json';
 
-function GuessWindow({word})
+function GuessWindow({ word })
 {
-
   const { turn, currentGuess, guesses, isCorrect, handleKeyup } = useWordle(word);
 
   useEffect(() => {
-    window.addEventListener('keyup', handleKeyup)
-
-    return () => {
-      window.removeEventListener('keyup', handleKeyup)
+    if(!isCorrect)
+    { 
+      window.addEventListener('keyup', handleKeyup)
+      
+      return () => {
+        window.removeEventListener('keyup', handleKeyup)
+      }
     }
   }, [handleKeyup])
 
@@ -31,13 +34,27 @@ function GuessWindow({word})
   const [grid, setGrid] = useState(arr);
 
   useEffect(() => {
-    console.log(guesses, turn, currentGuess);
+    // console.log(guesses, turn, currentGuess);
 
     let arr = [...grid];
     for(let i=0; i<turn; i++)
     {
+      console.log('here');
       for(let j=0; j<cols; j++)
+      {
         arr[i][j] = guesses[i][j].key;
+        
+        const myDiv = document.getElementById(`${guesses[i][j].key}`);
+
+        // const myDiv2 = document.getElementById(`${i}${j}`);
+
+        // console.log('myDiv2', myDiv2.style.backgroundColor);
+
+        // console.log(`myDiv${i}${j}`, myDiv.style.backgroundColor);
+
+        if(myDiv.style.backgroundColor === `${color.yellow}` || myDiv.style.backgroundColor === '')
+          myDiv.style.backgroundColor = guesses[i][j].color;
+      }
     }
 
     for(let i=turn; i<rows; i++)
@@ -46,8 +63,27 @@ function GuessWindow({word})
         arr[i][j] = ' ';
     }
 
-    for(let j=0; j<currentGuess.length; j++)
+    for(let j=0; j<cols; j++)
+    {
       arr[turn][j] = currentGuess[j];
+      const myDiv = document.getElementById(`${turn}${j}`);
+      if(j>=currentGuess.length)
+        myDiv.style.outline = `solid 2px ${color.grey_outline}`;
+      else
+      {
+        if(j==currentGuess.length-1)
+          myDiv.style.outline = `solid 3px ${color.black}`;
+        else  
+          myDiv.style.outline = `solid 2px ${color.grey_outline}`;
+      }      
+    }
+
+    if(turn>=1)
+    {
+      const myDiv = document.getElementById(`${turn-1}${cols-1}`);
+      
+      myDiv.style.outline = `solid 2px ${myDiv.style.backgroundColor}`;
+    }
 
     setGrid(arr);
 
@@ -63,12 +99,13 @@ function GuessWindow({word})
                 row.map((col, ic) => {
                   return (
                     <div 
+                      id={`${ir}${ic}`}
                       key={ic} 
                       className='guess-col'
                       style={
                         {
                           backgroundColor: ir>=turn?'white':`${guesses[ir][ic].color}`,
-                          outline: `solid 2px ${ir>=turn?'grey':`${guesses[ir][ic].color}`}`,
+                          outline: `solid 2px ${ir>=turn?`${color.grey_outline}`:`${guesses[ir][ic].color}`}`,
                       }}
                     >
                       {col}

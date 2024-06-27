@@ -1,4 +1,5 @@
 import { useState } from "react";
+import color from "./../color.json";
 
 const useWordle = (word) => {
 
@@ -14,23 +15,23 @@ const useWordle = (word) => {
 
     const solution = word.split('');
     const formattedGuess = currentGuess.split('').map((letter) => {
-      return {key: letter, color: 'grey'}
+      return {key: letter, color: `${color.grey}`}
     });
 
     for(let i=0; i<solution.length; i++)
     {
       if(solution[i] === formattedGuess[i].key)
       {
-        formattedGuess[i].color = 'green';
+        formattedGuess[i].color = `${color.green}`;
         solution[i] = ' ';
       }
     }
 
     for(let i=0; i<solution.length; i++)
     {
-      if(solution.indexOf(formattedGuess[i].key) !== -1 && formattedGuess[i].color === 'grey')
+      if(solution.indexOf(formattedGuess[i].key) !== -1 && formattedGuess[i].color === `${color.grey}`)
       {
-        formattedGuess[i].color = 'yellow';
+        formattedGuess[i].color = `${color.yellow}`;
         solution[solution.indexOf(formattedGuess[i].key)] = ' ';
       }
     }
@@ -59,7 +60,14 @@ const useWordle = (word) => {
   }
 
   const handleKeyup = (e) => {
-    const key=e.key;
+    
+    let key;
+    
+    if(e.type === 'keyup')
+      key=e.key;
+    else if(e.type === 'click') 
+      key=e.target.id;
+
     console.log(key);
 
     if(key === 'Enter')
@@ -97,7 +105,7 @@ const useWordle = (word) => {
     }
   }
 
-  return {turn, currentGuess, guesses, isCorrect, handleKeyup}
+  return {turn, currentGuess, guesses, isCorrect, handleKeyup};
 }
 
 export default useWordle;

@@ -45,9 +45,9 @@ function App()
   return (
     <div className="app">
       <Navbar/>
-      <h5>{word}</h5>
+      {/* <h5>{word}</h5> */}
       <GuessWindow word={word}/>
-      <OnSrcKeyboard/>
+      <OnSrcKeyboard word={word}/>
     </div>
   );
 }

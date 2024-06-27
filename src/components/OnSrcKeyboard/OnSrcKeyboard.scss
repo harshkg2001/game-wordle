@@ -9,10 +9,11 @@
     padding-bottom: 5px;
 
     .on-src-col{
-      outline: solid 1px grey;
       padding: 15px;
       border-radius: 4px;
       font-weight: 600;
+      background-color: rgb(235, 235, 235);
+      cursor: pointer;
     }
   }
 }
