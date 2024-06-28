@@ -4,10 +4,12 @@ import sparewords from './sparewords.json';
 import Navbar from './components/Navbar/Navbar.jsx';
 import GuessWindow from './components/GuessWindow/GuessWindow.jsx';
 import OnSrcKeyboard from './components/OnSrcKeyboard/OnSrcKeyboard.jsx';
+import useWordle from './hooks/useWordle.js';
 
 function App()
 {
-  const [word, setWord] = useState("");
+  const { word, setWord } = useWordle();
+
   const randomWord = sparewords[Math.floor(Math.random()*sparewords.length)].word.toUpperCase();
 
   useEffect(() => {
@@ -45,7 +47,7 @@ function App()
   return (
     <div className="app">
       <Navbar/>
-      {/* <h5>{word}</h5> */}
+      <h5>{word}</h5>
       <GuessWindow word={word}/>
       <OnSrcKeyboard word={word}/>
     </div>

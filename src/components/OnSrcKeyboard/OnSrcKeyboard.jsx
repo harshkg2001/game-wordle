@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import './OnSrcKeyboard.scss'
 import data from '../../data.json'
 import useWordle from '../../hooks/useWordle';
+import color from './../../color.json';
 
 function OnSrcKeyboard( {word} )
 {
   /////////////////////////////////////////////////
 
-  const { isCorrect, handleKeyup } = useWordle(word);
+  const { turn, currentGuess, guesses, isCorrect, handleKeyup } = useWordle(word);
 
   useEffect(() => {
     if(!isCorrect)
